@@ -67,7 +67,7 @@ const phantomEval = phantomPageEval({ /*[constructor options here]*/ })
 ```
 
 - `phantomPath` **string** **[required]** - the path to the [phantomjs](http://phantomjs.org/) executable that your app is going to use
-- `tmpPath` **string** - the directory path that the module is going to use to save temporary needed during the evaluation. defaults to [`require('os').tmpdir()`](https://nodejs.org/dist/latest-v8.x/docs/api/os.html#os_os_tmpdir)
+- `tmpDir` **string** - the directory path that the module is going to use to save temporary files needed during the evaluation. defaults to [`require('os').tmpdir()`](https://nodejs.org/dist/latest-v8.x/docs/api/os.html#os_os_tmpdir)
 - `clean` **boolean** - specifies if the module should delete any temp file automatically after an evaluation, if `false` temp files will not be cleaned by the module and app developer will be responsible to clean them. defaults to `true`
 - `launchArgs` **array** - array with [any of the command line options supported by phantomjs](http://phantomjs.org/api/command-line.html#command-line-options). defaults to `['--ignore-ssl-errors=yes', '--web-security=false', '--ssl-protocol=any']`
 
