@@ -12,13 +12,13 @@ const defaultLaunchArgs = [
 ]
 
 module.exports = (options) => {
-  const { phantomPath, tmpDir, ...rest } = options
+  const { phantomPath, ...rest } = options
 
   if (!phantomPath) {
     throw new Error('required `phantomPath` option not specified, make sure to install phantomJS and pass the path to the constructor')
   }
 
-  if (!tmpDir) {
+  if (!rest.tmpDir) {
     rest.tmpDir = os.tmpdir()
   }
 
