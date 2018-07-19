@@ -1,6 +1,6 @@
 {
   "name": "phantom-page-eval",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Evaluate a script function on a page with PhantomJS",
   "main": "index.js",
   "homepage": "https://github.com/bjrmatos/phantom-page-eval",
