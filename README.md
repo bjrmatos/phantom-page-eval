@@ -85,6 +85,9 @@ const phantomEval = phantomPageEval({ phantomPath })
 
 - `html` **string** **[required]** - the path to the html file to load in a phantom page
 - `scriptFn` **string** **[required]** - the script to evaluate in the phantom page. the script must be a function that returns a value. ex: `scriptFn: 'function () { return 1 + 2}'`
+- `styles` **array<string>** - array of css strings to insert at the beginning of page's head element. ex: `styles: ['* { font-family: 'Calibri'; font-size: 16px; }']`
+- `waitForJS` **boolean** - when `true` the `scriptFn` won't be executed until the variable specified in `waitForJSVarName` option is set to true in page's javscript. defaults to `false`
+- `waitForJSVarName` **string** - name of the variable that will be used as trigger of `scriptFn`. defaults to `"PHANTOM_PAGE_EVAL_READY"`
 - `viewport` **object** - object with [any of the viewportSize options supported by phantomjs](http://phantomjs.org/api/webpage/property/viewport-size.html)
 - `args` **array** - a list of custom arguments to pass to the `scriptFn` function. ex: `args: [1, 2]` and with `scriptFn: function (a, b) { return a + b}'` will produce `3` as result
 - `timeout` **number** - time in ms to wait for the script evaluation to complete, when the timeout is reached the evaluation is cancelled. defaults to `30000`
