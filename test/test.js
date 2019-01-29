@@ -69,6 +69,45 @@ describe('phantom-page-eval', () => {
     should(result.content).have.length(4)
   })
 
+  it('should allow inserting styles at the beginning of page', async () => {
+    const result = await phantomEval({
+      html: sampleHtmlPath,
+      styles: [`
+        * {
+          font-family: Calibri
+        }
+        .extra {
+          font-family: "Times New Roman"
+        }
+      `],
+      scriptFn: `
+        function () {
+          var title = document.title
+          var contentNodes = Array.prototype.slice.call(document.getElementsByClassName('content'))
+
+          var contentFontFamily = document.defaultView.getComputedStyle(contentNodes[0], null).getPropertyValue('font-family')
+          var extraFontFamily = document.defaultView.getComputedStyle(document.querySelector('.extra'), null).getPropertyValue('font-family')
+
+          var content = contentNodes.map(function (node) {
+            return node.textContent
+          })
+
+          return {
+            title: title,
+            content: content,
+            contentFontFamily: contentFontFamily,
+            extraFontFamily: extraFontFamily
+          }
+        }
+      `
+    })
+
+    should(result).be.Object()
+    should(result.title).be.eql('Test page')
+    should(result.contentFontFamily).be.eql('Calibri')
+    should(result.extraFontFamily).be.eql(`'Times New Roman'`)
+  })
+
   it('should wait for JS trigger to start to eval', async () => {
     const result = await phantomEval({
       html: path.join(__dirname, 'sampleJSTrigger.html'),
