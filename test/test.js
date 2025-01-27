@@ -2,7 +2,7 @@
 
 const should = require('should')
 const path = require('path')
-const phantomPath = require('phantomjs').path
+const phantomPath = require('phantomjs-prebuilt').path
 const phantomPageEval = require('../')
 
 const sampleHtmlPath = path.join(__dirname, 'sample.html')
